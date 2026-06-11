@@ -92,8 +92,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "discovery",
           "priority": "required",
           "estimate": {
-            "min": 10,
-            "max": 14
+            "min": 8,
+            "max": 12
           }
         },
         {
@@ -103,8 +103,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "qa",
           "priority": "required",
           "estimate": {
-            "min": 5,
-            "max": 7
+            "min": 4,
+            "max": 6
           }
         },
         {
@@ -114,8 +114,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "discovery",
           "priority": "recommended",
           "estimate": {
-            "min": 7,
-            "max": 11
+            "min": 5,
+            "max": 8
           },
           "consequence": "Estimate confidence for provider-specific edge cases is lower, and some provider decisions may move into implementation."
         }
@@ -138,8 +138,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 18
+            "min": 10,
+            "max": 14
           }
         },
         {
@@ -149,8 +149,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 22
+            "min": 12,
+            "max": 18
           }
         },
         {
@@ -160,8 +160,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "product",
           "priority": "required",
           "estimate": {
-            "min": 12,
-            "max": 16
+            "min": 8,
+            "max": 12
           }
         },
         {
@@ -171,8 +171,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "backend",
           "priority": "recommended",
           "estimate": {
-            "min": 14,
-            "max": 22
+            "min": 10,
+            "max": 16
           },
           "consequence": "MVP can still block or allow users manually, but automated trust-based filtering will be simpler."
         },
@@ -183,8 +183,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "admin",
           "priority": "optional",
           "estimate": {
-            "min": 20,
-            "max": 35
+            "min": 12,
+            "max": 22
           },
           "consequence": "Admin review remains possible, but collusion and multi-account detection is mostly manual."
         }
@@ -203,8 +203,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "product",
           "priority": "required",
           "estimate": {
-            "min": 28,
-            "max": 36
+            "min": 22,
+            "max": 30
           }
         },
         {
@@ -214,8 +214,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 30
+            "min": 18,
+            "max": 24
           }
         },
         {
@@ -225,8 +225,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 18
+            "min": 10,
+            "max": 14
           }
         },
         {
@@ -236,8 +236,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "product",
           "priority": "recommended",
           "estimate": {
-            "min": 12,
-            "max": 18
+            "min": 8,
+            "max": 12
           },
           "consequence": "MVP can use fixed or random map selection, which reduces realtime state complexity."
         },
@@ -248,8 +248,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "product",
           "priority": "recommended",
           "estimate": {
-            "min": 8,
-            "max": 12
+            "min": 6,
+            "max": 10
           },
           "consequence": "Core cancellation works, but the open-lobby UX is less polished for first-community acquisition."
         }
@@ -267,34 +267,34 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m3-wallet-deposit-balance",
           "title": "Wallet balance and deposit flow",
-          "description": "Stablecoin/payment-provider deposit flow, balance display and basic provider callback handling.",
+          "description": "MVP stablecoin/payment-provider deposit flow, balance display and callback handling without complex withdrawal/KYC automation.",
           "category": "wallet",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 24
+            "min": 14,
+            "max": 20
           }
         },
         {
           "id": "m3-hold-refund-payout",
           "title": "Locked funds, refund and payout rules",
-          "description": "Hold funds on join, release on pre-lock exit/cancel, payout after dispute window and refund/void settlement paths.",
+          "description": "MVP ledger rules for hold on join, pre-lock refund, cancel/void refund, payout after dispute window and admin fallback for exceptions.",
           "category": "wallet",
           "priority": "required",
           "estimate": {
-            "min": 26,
-            "max": 36
+            "min": 22,
+            "max": 30
           }
         },
         {
           "id": "m3-transaction-history-rake",
           "title": "Transaction history and 10% commission",
-          "description": "Transaction ledger for deposits, holds, refunds, payouts and platform rake from winner-side settlement.",
+          "description": "Compact transaction history for deposits, holds, refunds, payouts and platform commission.",
           "category": "wallet",
           "priority": "required",
           "estimate": {
-            "min": 12,
-            "max": 16
+            "min": 8,
+            "max": 12
           }
         },
         {
@@ -304,8 +304,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "wallet",
           "priority": "recommended",
           "estimate": {
-            "min": 18,
-            "max": 28
+            "min": 14,
+            "max": 22
           },
           "consequence": "MVP can validate funded gameplay, but cash-out operations may need to be handled manually or delayed."
         },
@@ -316,8 +316,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "wallet",
           "priority": "optional",
           "estimate": {
-            "min": 19,
-            "max": 33
+            "min": 12,
+            "max": 20
           },
           "consequence": "Financial compliance operations stay basic and may require manual operational controls."
         }
@@ -386,34 +386,34 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m5-matchzy-setup",
           "title": "MatchZy server setup",
-          "description": "CS2 server setup assumptions, MatchZy configuration, 5v5 match config and technical ready flow.",
+          "description": "MVP CS2 server and MatchZy setup for one standard 5v5 money-match flow.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 24
+            "min": 14,
+            "max": 20
           }
         },
         {
           "id": "m5-server-lifecycle-rcon",
           "title": "Server lifecycle and RCON/basic control",
-          "description": "Create or assign server, reveal connection info after lock, basic RCON-style control and match state sync.",
+          "description": "Basic server assignment/start, connection info after lock and RCON-style control for MVP operations.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 26
+            "min": 14,
+            "max": 22
           }
         },
         {
           "id": "m5-result-logs-demo-fallback",
           "title": "Result capture, logs, demo and fallback",
-          "description": "Capture final result from MatchZy/logs where available, store logs/demo references and route unclear matches to admin review.",
+          "description": "Capture result where MatchZy/logs expose it, store evidence links and send unclear cases to admin review.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 22
+            "min": 12,
+            "max": 18
           }
         },
         {
@@ -423,8 +423,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "cs2",
           "priority": "recommended",
           "estimate": {
-            "min": 16,
-            "max": 25
+            "min": 12,
+            "max": 20
           },
           "consequence": "MVP can void or admin-review failed matches, but automated recovery is less mature."
         },
@@ -435,8 +435,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "cs2",
           "priority": "optional",
           "estimate": {
-            "min": 14,
-            "max": 24
+            "min": 10,
+            "max": 18
           },
           "consequence": "Disconnects are handled by simpler MatchZy result/admin review rules."
         }
@@ -455,19 +455,19 @@ export const demoConfig: CalculatorConfig = {
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 18
+            "min": 10,
+            "max": 14
           }
         },
         {
           "id": "m6-admin-challenge-actions",
           "title": "Admin challenge and dispute actions",
-          "description": "Admin views players, ratings, balances, funding, match status, evidence and can confirm result, change winner, refund, void or cancel.",
+          "description": "MVP admin panel for challenge evidence and core actions: confirm result, change winner, refund, void and cancel.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 30
+            "min": 16,
+            "max": 24
           }
         },
         {
@@ -477,8 +477,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 7,
-            "max": 10
+            "min": 5,
+            "max": 8
           }
         },
         {
@@ -488,8 +488,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "admin",
           "priority": "recommended",
           "estimate": {
-            "min": 10,
-            "max": 18
+            "min": 8,
+            "max": 14
           },
           "consequence": "Disputes rely on structured comments plus server-side evidence only."
         },
@@ -500,8 +500,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "admin",
           "priority": "optional",
           "estimate": {
-            "min": 14,
-            "max": 24
+            "min": 10,
+            "max": 18
           },
           "consequence": "Admin decision is final inside the MVP platform process."
         }
@@ -516,12 +516,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m7-qa-deployment-handoff",
           "title": "QA, deployment and handoff",
-          "description": "Critical path QA, smoke/regression checks, staging/production deployment, Docker handoff and release notes.",
+          "description": "Focused MVP QA, smoke/regression checks, production deployment and concise handoff notes.",
           "category": "qa",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 30
+            "min": 18,
+            "max": 24
           }
         },
         {
@@ -531,8 +531,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "qa",
           "priority": "recommended",
           "estimate": {
-            "min": 12,
-            "max": 20
+            "min": 8,
+            "max": 14
           },
           "consequence": "Controlled beta is still possible, but high-concurrency confidence is lower."
         },
@@ -543,8 +543,8 @@ export const demoConfig: CalculatorConfig = {
           "category": "qa",
           "priority": "recommended",
           "estimate": {
-            "min": 11,
-            "max": 18
+            "min": 8,
+            "max": 12
           },
           "consequence": "Handoff is lighter and early operations rely more on direct developer support."
         }
@@ -553,8 +553,9 @@ export const demoConfig: CalculatorConfig = {
   ],
   "assumptions": [
     "Milestone 0 is a complimentary first stage and is included in hours/calendar but excluded from billable budget.",
+    "All estimates are calibrated for MVP delivery: one 5v5 flow, pragmatic integrations, admin/manual fallback for edge cases and no overbuilt automation.",
     "Budget-fit MVP is 5v5 only; 2v2 downgrade, 3v3 and other formats are excluded.",
-    "At $27/h, the $15k cap gives about 555 billable hours; the required MVP stays below that cap and leaves room for selected recommended blocks.",
+    "At $27/h, the $15k cap gives about 555 billable hours; the current MVP estimate leaves budget buffer for integration uncertainty.",
     "Open challenges and basic Discord acquisition are included in MVP; slash-command creation and partner-server workflows remain removable.",
     "MatchZy is treated as the primary CS2 match-management layer; if it does not expose enough data, the MVP falls back to logs/demo plus admin review.",
     "Final estimate should be tightened after confirming payment provider, server hosting model and exact MatchZy event coverage."
