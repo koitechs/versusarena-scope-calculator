@@ -332,46 +332,46 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m4-discord-open-challenge-publishing",
           "title": "Discord open challenge publishing",
-          "description": "Bot posts open 5v5 challenges with live fill status and deep links to join and fund in the web app.",
+          "description": "Post open 5v5 challenges into Discord with fill status and deep links to join/fund in the web app. Keeps status sync lightweight for MVP.",
           "category": "discord",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 24
+            "min": 9,
+            "max": 13
           }
         },
         {
           "id": "m4-discord-dm-notifications",
           "title": "Discord DM notifications",
-          "description": "DMs for match ready, server info, ready-check countdown, result captured and dispute opened.",
+          "description": "Basic DMs for match ready, server info, ready-check countdown, result captured and dispute opened.",
           "category": "discord",
           "priority": "required",
           "estimate": {
-            "min": 10,
-            "max": 16
+            "min": 7,
+            "max": 11
           }
         },
         {
           "id": "m4-slash-command-create",
           "title": "Slash command challenge creation",
-          "description": "Create a 5v5 challenge directly from Discord slash commands and continue funding in the web app.",
+          "description": "Create a 5v5 challenge from a Discord slash command and continue detailed setup/funding in the web app.",
           "category": "discord",
           "priority": "recommended",
           "estimate": {
-            "min": 14,
-            "max": 22
+            "min": 8,
+            "max": 14
           },
           "consequence": "Discord still drives traffic, but challenge creation starts in the web app."
         },
         {
           "id": "m4-partner-community-servers",
           "title": "Partner community server publishing",
-          "description": "Controlled publishing into partner Discord servers with per-server settings and tracking.",
+          "description": "Light partner-server publishing with manual setup per server and basic tracking.",
           "category": "discord",
           "priority": "optional",
           "estimate": {
-            "min": 16,
-            "max": 24
+            "min": 10,
+            "max": 16
           },
           "consequence": "Launch can start on the primary Discord server, but partner-server growth loops are manual."
         }
