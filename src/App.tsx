@@ -16,7 +16,7 @@ import { exportScopePdf } from './export/pdf'
 
 const categoryIds = config.categories.map((category) => category.id)
 const initialSelection = createInitialSelection(config)
-const initialMilestone = config.milestones[0]?.id ?? 'all'
+const initialMilestone = 'all'
 
 function App() {
   const [selected, setSelected] = useState<SelectionState>(initialSelection)
