@@ -99,12 +99,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m0-multi-game-architecture-blueprint",
           "title": "Multi-game architecture blueprint",
-          "description": "Define shared challenge engine, game-adapter boundaries and data contracts so CS2 is the first adapter, not hardcoded platform logic.",
+          "description": "Define lightweight shared challenge lifecycle, format config and future game-adapter boundaries so CS2 is the first adapter, not hardcoded platform logic.",
           "category": "discovery",
           "priority": "required",
           "estimate": {
-            "min": 4,
-            "max": 6
+            "min": 3,
+            "max": 5
           }
         },
         {
@@ -177,13 +177,13 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m1-game-adapter-foundation",
-          "title": "Game adapter foundation",
-          "description": "Add core data model boundaries for game type, player game profile, rating source, match evidence type and result parser adapter.",
+          "title": "Light game adapter foundation",
+          "description": "Add lightweight data boundaries for game type, player game profile, rating source and match evidence type. CS2 is implemented first; future games can plug into the same contracts later.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 22
+            "min": 8,
+            "max": 14
           }
         },
         {
@@ -221,56 +221,56 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m2-private-open-challenge",
           "title": "Multi-format private and open challenges",
-          "description": "Create private invite and open challenges for fixed formats: 1v1, 2v2, 3v3 on wingman maps and 5v5. Includes stake, skill range, TTL and visibility rules.",
+          "description": "Create private invite and open challenges using one shared challenge flow with fixed format config for 1v1, 2v2, 3v3 on wingman maps and 5v5.",
           "category": "product",
           "priority": "required",
           "estimate": {
-            "min": 28,
-            "max": 38
+            "min": 24,
+            "max": 32
           }
         },
         {
           "id": "m2-join-funding-lock-ready",
           "title": "Join, funding lock and ready flow by format",
-          "description": "Join flow, eligibility checks, funding lock and ready state for 1v1, 2v2, 3v3 wingman and 5v5.",
+          "description": "Reuse the same join, eligibility, funding lock and ready flow across formats, with player count and thresholds driven by format config.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 24,
-            "max": 34
+            "min": 20,
+            "max": 28
           }
         },
         {
           "id": "m2-team-balancing",
           "title": "Team formation and balancing by format",
-          "description": "Team split/balance for 1v1, 2v2, 3v3 wingman and 5v5, with deterministic logic visible for admin/dispute review.",
+          "description": "Team split/balance using the same algorithm with format-specific team size: 1v1, 2v2, 3v3 wingman and 5v5.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 24
+            "min": 12,
+            "max": 18
           }
         },
         {
           "id": "m2-format-rules-engine",
           "title": "Format rules engine",
-          "description": "Centralize supported team size, players required, allowed maps, ready thresholds, funding pool and no-show rules per fixed MVP format.",
+          "description": "Centralize supported team size, players required, map pool, ready thresholds, funding pool and no-show rules as configuration per fixed MVP format.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 24
+            "min": 8,
+            "max": 14
           }
         },
         {
           "id": "m2-map-veto",
           "title": "Map selection, veto and wingman map rules",
-          "description": "Basic map selection/veto rules per format, including 3v3 restriction to wingman maps and standard map flow for 5v5.",
+          "description": "Basic map selection/veto rules driven by format config, including wingman map pool for 3v3 and standard map flow for 5v5.",
           "category": "product",
           "priority": "recommended",
           "estimate": {
-            "min": 12,
-            "max": 18
+            "min": 10,
+            "max": 14
           },
           "consequence": "MVP can use fixed or random map selection, which reduces realtime state complexity."
         },
@@ -288,7 +288,7 @@ export const demoConfig: CalculatorConfig = {
         }
       ],
       "risks": [
-        "The main risk is validating MatchZy/server behavior consistently across 1v1, 2v2, 3v3 wingman and 5v5; unsupported formats stay out of MVP."
+        "Multi-format support is estimated as config-based reuse of one challenge lifecycle. The main uncertainty is MatchZy/server behavior per format, not rebuilding each mode separately."
       ]
     },
     {
@@ -311,12 +311,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m3-hold-refund-payout",
           "title": "Hold, refund and payout ledger rules by format",
-          "description": "MVP ledger rules for hold, refund, void and payout across 1v1, 2v2, 3v3 wingman and 5v5 pools, with admin fallback for exceptions.",
+          "description": "One ledger flow for hold, refund, void and payout, with pool size and payout calculations driven by selected match format.",
           "category": "wallet",
           "priority": "required",
           "estimate": {
-            "min": 26,
-            "max": 36
+            "min": 24,
+            "max": 32
           }
         },
         {
@@ -419,34 +419,34 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m5-matchzy-setup",
           "title": "MatchZy setup for supported formats",
-          "description": "MVP CS2 server and MatchZy setup for 1v1, 2v2, 3v3 wingman and 5v5, including wingman-map flow where applicable.",
+          "description": "MVP CS2 server and MatchZy setup using reusable server flow plus config variants for 1v1, 2v2, 3v3 wingman and 5v5.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 20,
-            "max": 30
+            "min": 18,
+            "max": 26
           }
         },
         {
           "id": "m5-server-lifecycle-rcon",
           "title": "Server lifecycle and RCON orchestration by format",
-          "description": "Prepare server config, expose connection details, start match and reconcile server state for 1v1, 2v2, 3v3 wingman and 5v5.",
+          "description": "Prepare server config, expose connection details, start match and reconcile server state using shared lifecycle and format-specific config.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 28
+            "min": 16,
+            "max": 24
           }
         },
         {
           "id": "m5-result-logs-demo-fallback",
           "title": "Result, logs, demo and fallback evidence across formats",
-          "description": "Store score, match logs/demo links and fallback evidence consistently for 1v1, 2v2, 3v3 wingman and 5v5.",
+          "description": "Store score, match logs/demo links and fallback evidence through one evidence model reused across supported formats.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 22
+            "min": 13,
+            "max": 20
           }
         },
         {
@@ -495,12 +495,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m6-admin-challenge-actions",
           "title": "Admin challenge and dispute actions",
-          "description": "Admin can inspect format-specific player lists, ratings, funding, server evidence, result and dispute state, then cancel/refund/resolve within MVP rules.",
+          "description": "Admin can inspect players, ratings, funding, format, server evidence, result and dispute state, then cancel/refund/resolve within MVP rules.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 28
+            "min": 16,
+            "max": 24
           }
         },
         {
@@ -549,12 +549,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m7-qa-deployment-handoff",
           "title": "QA, deployment and handoff for supported formats",
-          "description": "Smoke/regression QA for 1v1, 2v2, 3v3 wingman and 5v5, staging/prod deploy, env documentation and handoff checklist.",
+          "description": "Smoke/regression QA for the shared lifecycle across 1v1, 2v2, 3v3 wingman and 5v5, plus staging/prod deploy and handoff checklist.",
           "category": "qa",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 32
+            "min": 18,
+            "max": 26
           }
         },
         {
@@ -587,8 +587,9 @@ export const demoConfig: CalculatorConfig = {
   "assumptions": [
     "Milestone 0 is complimentary/free and does not count toward the paid budget.",
     "Supported MVP formats are fixed: 1v1, 2v2, 3v3 on wingman maps and 5v5. 4v4 and arbitrary/custom player counts are excluded.",
+    "1v1, 2v2, 3v3 and 5v5 are not treated as four separate products; player count, team size, map pool, ready thresholds and server config are reused through a format configuration layer.",
     "The architecture should support future games through a shared challenge engine and separate game adapters; CS2 is the first implemented adapter.",
-    "All estimates are calibrated for MVP delivery: pragmatic integrations, admin/manual fallback for edge cases and no overbuilt automation.",
+    "All estimates are calibrated for config-based MVP delivery: one reusable challenge lifecycle, fixed format configuration, pragmatic integrations and admin/manual fallback for edge cases.",
     "Hourly rate is $27/h. $15,000 budget equals roughly 555 billable hours before platform fees.",
     "Open challenges and basic Discord acquisition are included in MVP; slash-command creation and partner-server workflows remain removable.",
     "MatchZy is treated as the primary CS2 match-management tool; logs/demo/RCON/admin review are the fallback path if MatchZy does not cover every case.",
