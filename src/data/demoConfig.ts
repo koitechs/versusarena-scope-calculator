@@ -156,12 +156,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m1-rating-lookup",
           "title": "FACEIT lookup and Premier fallback",
-          "description": "Find FACEIT by Steam ID where possible, support manual fallback, store one active skill band and reliability flag.",
+          "description": "FACEIT lookup by Steam ID where possible, manual FACEIT linking fallback, Premier data only if reliable source is available, and Limited Data state if external rating is unavailable.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 12,
-            "max": 18
+            "min": 14,
+            "max": 20
           }
         },
         {
@@ -188,10 +188,10 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m1-trust-score-v1",
-          "title": "Trust score v1",
-          "description": "Verified, limited-data and restricted states based on rating availability, dispute losses and admin restrictions.",
+          "title": "Basic trust and safety states",
+          "description": "MVP trust states: Verified, Limited Data, Restricted, stake caps for limited/restricted users, dispute/no-show flags and admin restriction ability.",
           "category": "backend",
-          "priority": "recommended",
+          "priority": "required",
           "estimate": {
             "min": 10,
             "max": 16
@@ -264,10 +264,10 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m2-map-veto",
-          "title": "Map selection, veto and wingman map rules",
-          "description": "Basic map selection/veto rules driven by format config, including wingman map pool for 3v3 and standard map flow for 5v5.",
+          "title": "MVP map selection and basic veto",
+          "description": "Fixed map, random map and basic captain/team veto where applicable; selected map is saved in challenge state, sent to server config and surfaced in Discord/system events.",
           "category": "product",
-          "priority": "recommended",
+          "priority": "required",
           "estimate": {
             "min": 10,
             "max": 14
@@ -276,15 +276,26 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m2-repost-ttl-polish",
-          "title": "Lobby TTL, cancel and repost polish",
-          "description": "Visible countdowns, automatic cancellation, clear repost flow and no-playerbase beta messaging.",
+          "title": "Lobby TTL, cancellation and repost MVP flow",
+          "description": "Visible timer, automatic expiry/cancellation, relevant refunds and quick repost of the same challenge for open challenge usability and trust.",
           "category": "product",
-          "priority": "recommended",
+          "priority": "required",
           "estimate": {
             "min": 6,
             "max": 10
           },
           "consequence": "Core cancellation works, but the open-lobby UX is less polished for first-community acquisition."
+        },
+        {
+          "id": "m2-substitute-waitlist-lite",
+          "title": "MVP-lite substitute / open slot flow before lock",
+          "description": "Before lock, if a player leaves or fails funding/ready, an eligible player can take the open slot. After lock, no replacement; no-show/admin rules apply.",
+          "category": "backend",
+          "priority": "required",
+          "estimate": {
+            "min": 8,
+            "max": 14
+          }
         }
       ],
       "risks": [
@@ -332,25 +343,25 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m3-withdrawals",
-          "title": "Withdrawal flow",
-          "description": "User withdrawal request, provider payout integration, admin hold/release and security events.",
+          "title": "Basic withdrawal request and admin review flow",
+          "description": "User can request withdrawal to external wallet/provider; admin can approve, reject or hold; action is recorded in audit log. Full withdrawal automation stays post-MVP.",
           "category": "wallet",
-          "priority": "recommended",
+          "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 22
+            "min": 10,
+            "max": 16
           },
           "consequence": "MVP can validate funded gameplay, but cash-out operations may need to be handled manually or delayed."
         },
         {
           "id": "m3-kyc-security-events",
-          "title": "KYC and financial security events",
-          "description": "KYC status tracking, security emails, withdrawal holds and suspicious-activity flags.",
+          "title": "Basic compliance and payment safety layer",
+          "description": "18+ confirmation, country/geo restriction, Terms & Rules acceptance before funding, KYC trigger before withdrawal/threshold, admin withdrawal hold/account freeze and provider/risk status in admin.",
           "category": "wallet",
-          "priority": "optional",
+          "priority": "required",
           "estimate": {
             "min": 12,
-            "max": 20
+            "max": 18
           },
           "consequence": "Financial compliance operations stay basic and may require manual operational controls."
         }
@@ -365,43 +376,43 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m4-discord-open-challenge-publishing",
           "title": "Discord open challenge publishing",
-          "description": "Post open 1v1, 2v2, 3v3 wingman and 5v5 challenges into Discord with fill status and deep links to join/fund in the web app. Keeps status sync lightweight for MVP.",
+          "description": "Publish challenge cards for 1v1, 2v2, 3v3 wingman and 5v5 with format, map, region, entry/prize pool, slots filled, skill/trust status, challenge status and deep links.",
           "category": "discord",
           "priority": "required",
           "estimate": {
-            "min": 9,
-            "max": 13
+            "min": 14,
+            "max": 22
           }
         },
         {
           "id": "m4-discord-dm-notifications",
           "title": "Discord DM notifications",
-          "description": "Basic DMs for match ready, server info, ready-check countdown, result captured and dispute opened.",
+          "description": "DM/system notifications for key events: funds locked, teams formed, veto started/completed, ready check, server ready, match live, result captured, dispute opened and payout/refund status.",
           "category": "discord",
           "priority": "required",
           "estimate": {
-            "min": 7,
-            "max": 11
+            "min": 8,
+            "max": 12
           }
         },
         {
           "id": "m4-slash-command-create",
-          "title": "Slash command challenge creation",
-          "description": "Create a supported-format challenge from a Discord slash command and continue detailed setup/funding in the web app.",
+          "title": "MVP-lite slash command draft flow",
+          "description": "Slash command creates a draft or opens a pre-filled web flow; final setup and funding stay in the web app.",
           "category": "discord",
-          "priority": "recommended",
+          "priority": "required",
           "estimate": {
-            "min": 8,
-            "max": 14
+            "min": 6,
+            "max": 10
           },
           "consequence": "Discord still drives traffic, but challenge creation starts in the web app."
         },
         {
           "id": "m4-partner-community-servers",
           "title": "Partner community server publishing",
-          "description": "Light partner-server publishing with manual setup per server and basic tracking.",
+          "description": "Publish challenge cards into pre-connected partner/community servers where the bot is installed, with lightweight source tracking by server/channel/post for future revenue-share analysis.",
           "category": "discord",
-          "priority": "optional",
+          "priority": "required",
           "estimate": {
             "min": 10,
             "max": 16
@@ -441,12 +452,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m5-result-logs-demo-fallback",
           "title": "Result, logs, demo and fallback evidence across formats",
-          "description": "Store score, match logs/demo links and fallback evidence through one evidence model reused across supported formats.",
+          "description": "Store result/score, server logs where available, demo/log references where available, server state evidence, challenge timeline and admin fallback if automatic result capture is unclear. Evidence retention assumption to be agreed, e.g. 90 days.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 13,
-            "max": 20
+            "min": 16,
+            "max": 24
           }
         },
         {
@@ -484,34 +495,34 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m6-dispute-window",
           "title": "Result finalization and dispute window",
-          "description": "30-minute dispute window, payout hold on dispute, countdown and automatic payout when no dispute is opened.",
+          "description": "Result finalization, dispute window and structured dispute form with reason, description, accused player if relevant, approximate round/time and payout hold while dispute is open.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 10,
-            "max": 14
+            "min": 12,
+            "max": 16
           }
         },
         {
           "id": "m6-admin-challenge-actions",
           "title": "Admin challenge and dispute actions",
-          "description": "Admin can inspect players, ratings, funding, format, server evidence, result and dispute state, then cancel/refund/resolve within MVP rules.",
+          "description": "Admin can review challenge-level and player-level risk: players, ratings, funds, evidence, history, block/unblock, restrict joining, stake cap, withdrawal hold, trust status and notes/reasons.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 24
+            "min": 22,
+            "max": 32
           }
         },
         {
           "id": "m6-audit-timeline",
           "title": "Challenge timeline and audit log",
-          "description": "Timeline of state transitions and append-only admin action log with reason fields.",
+          "description": "Challenge timeline plus audit log for money/admin actions with who, what, when and why.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 5,
-            "max": 8
+            "min": 6,
+            "max": 10
           }
         },
         {
@@ -549,12 +560,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m7-qa-deployment-handoff",
           "title": "QA, deployment and handoff for supported formats",
-          "description": "Smoke/regression QA for the shared lifecycle across 1v1, 2v2, 3v3 wingman and 5v5, plus staging/prod deploy and handoff checklist.",
+          "description": "Acceptance testing for each supported format through create, join, fund, ready, map confirmation/veto, server info, result/dispute and payout/refund; staging/prod deployment, env docs, basic error logs, DB backup approach and handoff checklist.",
           "category": "qa",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 26
+            "min": 22,
+            "max": 32
           }
         },
         {
@@ -588,12 +599,11 @@ export const demoConfig: CalculatorConfig = {
     "Milestone 0 is complimentary/free and does not count toward the paid budget.",
     "Supported MVP formats are fixed: 1v1, 2v2, 3v3 on wingman maps and 5v5. 4v4 and arbitrary/custom player counts are excluded.",
     "1v1, 2v2, 3v3 and 5v5 are not treated as four separate products; player count, team size, map pool, ready thresholds and server config are reused through a format configuration layer.",
+    "The agreed MVP scope includes simplified versions of compliance, trust states, withdrawal request review, Discord acquisition, partner/community publishing, map veto, source tracking and acceptance criteria.",
     "The architecture should support future games through a shared challenge engine and separate game adapters; CS2 is the first implemented adapter.",
-    "All estimates are calibrated for config-based MVP delivery: one reusable challenge lifecycle, fixed format configuration, pragmatic integrations and admin/manual fallback for edge cases.",
     "Hourly rate is $27/h. $15,000 budget equals roughly 555 billable hours before platform fees.",
-    "Open challenges and basic Discord acquisition are included in MVP; slash-command creation and partner-server workflows remain removable.",
     "MatchZy is treated as the primary CS2 match-management tool; logs/demo/RCON/admin review are the fallback path if MatchZy does not cover every case.",
-    "Final estimate should shrink after confirming payment provider, CS2 server provider and MatchZy coverage per supported format."
+    "Final estimate should shrink or grow after confirming payment provider, CS2 server provider and MatchZy coverage per supported format."
   ],
   "nextQuestions": [
     "Should 1v1 and 2v2 use wingman maps only, or can they also use selected standard maps?",
