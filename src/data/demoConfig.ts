@@ -4,7 +4,7 @@ export const demoConfig: CalculatorConfig = {
   "meta": {
     "projectName": "VersusArena Competitive CS2 Platform",
     "clientName": "VersusArena",
-    "calculatorTitle": "5v5 MVP Scope Calculator",
+    "calculatorTitle": "Multi-format MVP Scope Calculator",
     "language": "en",
     "preparedBy": "Koitechs",
     "repoName": "versusarena-scope-calculator"
@@ -82,18 +82,29 @@ export const demoConfig: CalculatorConfig = {
     {
       "id": "m0",
       "title": "Milestone 0 — Complimentary scope lock and technical planning",
-      "summary": "Free first stage: confirm the 5v5 MVP scope, money rules, match states and integration assumptions before paid implementation.",
-      "killerFeature": "A complimentary technical blueprint for a budget-fit 5v5 MVP.",
+      "summary": "Free first stage: confirm fixed CS2 formats (1v1, 2v2, 3v3 on wingman maps and 5v5), money rules, match states and integration assumptions before paid implementation.",
+      "killerFeature": "A complimentary technical blueprint for a budget-fit multi-format CS2 MVP.",
       "blocks": [
         {
           "id": "m0-scope-state-machine-acceptance",
           "title": "Scope, state machine and acceptance criteria",
-          "description": "Lock the 5v5-only challenge lifecycle, wallet rules, dispute states, MatchZy assumptions and acceptance scenarios.",
+          "description": "Lock the challenge lifecycle for fixed CS2 formats (1v1, 2v2, 3v3 on wingman maps and 5v5), wallet rules, dispute states, MatchZy assumptions and acceptance scenarios.",
           "category": "discovery",
           "priority": "required",
           "estimate": {
             "min": 8,
             "max": 12
+          }
+        },
+        {
+          "id": "m0-multi-game-architecture-blueprint",
+          "title": "Multi-game architecture blueprint",
+          "description": "Define shared challenge engine, game-adapter boundaries and data contracts so CS2 is the first adapter, not hardcoded platform logic.",
+          "category": "discovery",
+          "priority": "required",
+          "estimate": {
+            "min": 4,
+            "max": 6
           }
         },
         {
@@ -128,7 +139,7 @@ export const demoConfig: CalculatorConfig = {
     {
       "id": "m1",
       "title": "Milestone 1 — Auth, player profile and skill data",
-      "summary": "Players can sign in, connect their gaming identity and receive a usable skill/trust profile for joining 5v5 challenges.",
+      "summary": "Players can sign in, connect their gaming identity and receive a usable skill/trust profile for joining fixed-format CS2 challenges.",
       "killerFeature": "Steam-based player identity with FACEIT/Premier skill bands.",
       "blocks": [
         {
@@ -165,6 +176,17 @@ export const demoConfig: CalculatorConfig = {
           }
         },
         {
+          "id": "m1-game-adapter-foundation",
+          "title": "Game adapter foundation",
+          "description": "Add core data model boundaries for game type, player game profile, rating source, match evidence type and result parser adapter.",
+          "category": "backend",
+          "priority": "required",
+          "estimate": {
+            "min": 14,
+            "max": 22
+          }
+        },
+        {
           "id": "m1-trust-score-v1",
           "title": "Trust score v1",
           "description": "Verified, limited-data and restricted states based on rating availability, dispute losses and admin restrictions.",
@@ -192,52 +214,63 @@ export const demoConfig: CalculatorConfig = {
     },
     {
       "id": "m2",
-      "title": "Milestone 2 — 5v5 challenge creation, open lobbies and joining",
-      "summary": "Users can create private or open 5v5 challenges, join eligible lobbies and lock a full 10-player match.",
-      "killerFeature": "Operational private and open 5v5 challenge flow.",
+      "title": "Milestone 2 — Multi-format challenge creation, open lobbies and joining",
+      "summary": "Users can create private or open challenges in fixed CS2 formats: 1v1, 2v2, 3v3 on wingman maps and 5v5.",
+      "killerFeature": "Operational challenge flow for fixed formats: 1v1, 2v2, 3v3 wingman and 5v5.",
       "blocks": [
         {
           "id": "m2-private-open-challenge",
-          "title": "Private and open challenge creation",
-          "description": "Create 5v5 private invite challenges and public open lobbies with stake, skill range, TTL and basic visibility rules.",
+          "title": "Multi-format private and open challenges",
+          "description": "Create private invite and open challenges for fixed formats: 1v1, 2v2, 3v3 on wingman maps and 5v5. Includes stake, skill range, TTL and visibility rules.",
           "category": "product",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 30
+            "min": 28,
+            "max": 38
           }
         },
         {
           "id": "m2-join-funding-lock-ready",
-          "title": "Join, funding lock and ready check states",
-          "description": "Solo join for open lobbies, invite-link join for private challenges, 10/10 funded lock and in-app ready check state transitions.",
+          "title": "Join, funding lock and ready flow by format",
+          "description": "Join flow, eligibility checks, funding lock and ready state for 1v1, 2v2, 3v3 wingman and 5v5.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 24
+            "min": 24,
+            "max": 34
           }
         },
         {
           "id": "m2-team-balancing",
-          "title": "5v5 team balancing",
-          "description": "Automatic team split by skill bands with deterministic, explainable team formation for admin/dispute review.",
+          "title": "Team formation and balancing by format",
+          "description": "Team split/balance for 1v1, 2v2, 3v3 wingman and 5v5, with deterministic logic visible for admin/dispute review.",
           "category": "backend",
           "priority": "required",
           "estimate": {
-            "min": 10,
-            "max": 14
+            "min": 16,
+            "max": 24
+          }
+        },
+        {
+          "id": "m2-format-rules-engine",
+          "title": "Format rules engine",
+          "description": "Centralize supported team size, players required, allowed maps, ready thresholds, funding pool and no-show rules per fixed MVP format.",
+          "category": "backend",
+          "priority": "required",
+          "estimate": {
+            "min": 16,
+            "max": 24
           }
         },
         {
           "id": "m2-map-veto",
-          "title": "Map veto and side choice",
-          "description": "Elimination-style map veto, app-side coin flip and side selection before server start.",
+          "title": "Map selection, veto and wingman map rules",
+          "description": "Basic map selection/veto rules per format, including 3v3 restriction to wingman maps and standard map flow for 5v5.",
           "category": "product",
           "priority": "recommended",
           "estimate": {
-            "min": 8,
-            "max": 12
+            "min": 12,
+            "max": 18
           },
           "consequence": "MVP can use fixed or random map selection, which reduces realtime state complexity."
         },
@@ -255,13 +288,13 @@ export const demoConfig: CalculatorConfig = {
         }
       ],
       "risks": [
-        "Only 5v5 is included. 2v2 downgrade, 3v3 and other formats are explicitly excluded from this MVP."
+        "The main risk is validating MatchZy/server behavior consistently across 1v1, 2v2, 3v3 wingman and 5v5; unsupported formats stay out of MVP."
       ]
     },
     {
       "id": "m3",
       "title": "Milestone 3 — Wallet, funding and settlement",
-      "summary": "Players can maintain a balance, fund a challenge, lock funds, receive refunds and get payouts after result finalization.",
+      "summary": "Users can deposit to balance, lock stakes into 1v1, 2v2, 3v3 wingman and 5v5 challenges and receive automatic payout/refund based on result/dispute state.",
       "killerFeature": "Reliable balance, hold, refund and payout logic for money matches.",
       "blocks": [
         {
@@ -277,13 +310,13 @@ export const demoConfig: CalculatorConfig = {
         },
         {
           "id": "m3-hold-refund-payout",
-          "title": "Locked funds, refund and payout rules",
-          "description": "MVP ledger rules for hold on join, pre-lock refund, cancel/void refund, payout after dispute window and admin fallback for exceptions.",
+          "title": "Hold, refund and payout ledger rules by format",
+          "description": "MVP ledger rules for hold, refund, void and payout across 1v1, 2v2, 3v3 wingman and 5v5 pools, with admin fallback for exceptions.",
           "category": "wallet",
           "priority": "required",
           "estimate": {
-            "min": 22,
-            "max": 30
+            "min": 26,
+            "max": 36
           }
         },
         {
@@ -326,13 +359,13 @@ export const demoConfig: CalculatorConfig = {
     {
       "id": "m4",
       "title": "Milestone 4 — Discord acquisition and match notifications",
-      "summary": "Discord becomes a first-class MVP acquisition and realtime notification channel for open 5v5 challenges.",
+      "summary": "Discord becomes a first-class MVP acquisition and realtime notification channel for open 1v1, 2v2, 3v3 wingman and 5v5 challenges.",
       "killerFeature": "Open challenges can be discovered and joined from Discord.",
       "blocks": [
         {
           "id": "m4-discord-open-challenge-publishing",
           "title": "Discord open challenge publishing",
-          "description": "Post open 5v5 challenges into Discord with fill status and deep links to join/fund in the web app. Keeps status sync lightweight for MVP.",
+          "description": "Post open 1v1, 2v2, 3v3 wingman and 5v5 challenges into Discord with fill status and deep links to join/fund in the web app. Keeps status sync lightweight for MVP.",
           "category": "discord",
           "priority": "required",
           "estimate": {
@@ -354,7 +387,7 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m4-slash-command-create",
           "title": "Slash command challenge creation",
-          "description": "Create a 5v5 challenge from a Discord slash command and continue detailed setup/funding in the web app.",
+          "description": "Create a supported-format challenge from a Discord slash command and continue detailed setup/funding in the web app.",
           "category": "discord",
           "priority": "recommended",
           "estimate": {
@@ -380,40 +413,40 @@ export const demoConfig: CalculatorConfig = {
     {
       "id": "m5",
       "title": "Milestone 5 — CS2 server and MatchZy match flow",
-      "summary": "The platform can prepare a 5v5 CS2 match, expose server info after lock, capture result evidence and fall back to admin review.",
+      "summary": "The platform can prepare CS2 matches for 1v1, 2v2, 3v3 wingman and 5v5, expose server info after lock, capture result evidence and fall back to admin review.",
       "killerFeature": "Pragmatic CS2/MatchZy integration for money-match evidence.",
       "blocks": [
         {
           "id": "m5-matchzy-setup",
-          "title": "MatchZy server setup",
-          "description": "MVP CS2 server and MatchZy setup for one standard 5v5 money-match flow.",
+          "title": "MatchZy setup for supported formats",
+          "description": "MVP CS2 server and MatchZy setup for 1v1, 2v2, 3v3 wingman and 5v5, including wingman-map flow where applicable.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
-            "min": 14,
-            "max": 20
+            "min": 20,
+            "max": 30
           }
         },
         {
           "id": "m5-server-lifecycle-rcon",
-          "title": "Server lifecycle and RCON/basic control",
-          "description": "Basic server assignment/start, connection info after lock and RCON-style control for MVP operations.",
+          "title": "Server lifecycle and RCON orchestration by format",
+          "description": "Prepare server config, expose connection details, start match and reconcile server state for 1v1, 2v2, 3v3 wingman and 5v5.",
+          "category": "cs2",
+          "priority": "required",
+          "estimate": {
+            "min": 18,
+            "max": 28
+          }
+        },
+        {
+          "id": "m5-result-logs-demo-fallback",
+          "title": "Result, logs, demo and fallback evidence across formats",
+          "description": "Store score, match logs/demo links and fallback evidence consistently for 1v1, 2v2, 3v3 wingman and 5v5.",
           "category": "cs2",
           "priority": "required",
           "estimate": {
             "min": 14,
             "max": 22
-          }
-        },
-        {
-          "id": "m5-result-logs-demo-fallback",
-          "title": "Result capture, logs, demo and fallback",
-          "description": "Capture result where MatchZy/logs expose it, store evidence links and send unclear cases to admin review.",
-          "category": "cs2",
-          "priority": "required",
-          "estimate": {
-            "min": 12,
-            "max": 18
           }
         },
         {
@@ -446,7 +479,7 @@ export const demoConfig: CalculatorConfig = {
       "id": "m6",
       "title": "Milestone 6 — Result, dispute and admin review",
       "summary": "Results auto-finalize when clean, disputes hold payout, and admins can resolve exceptional cases from platform-side evidence.",
-      "killerFeature": "Structured admin dispute center for 5v5 money matches.",
+      "killerFeature": "Structured admin dispute center for fixed-format CS2 money matches.",
       "blocks": [
         {
           "id": "m6-dispute-window",
@@ -462,12 +495,12 @@ export const demoConfig: CalculatorConfig = {
         {
           "id": "m6-admin-challenge-actions",
           "title": "Admin challenge and dispute actions",
-          "description": "MVP admin panel for challenge evidence and core actions: confirm result, change winner, refund, void and cancel.",
+          "description": "Admin can inspect format-specific player lists, ratings, funding, server evidence, result and dispute state, then cancel/refund/resolve within MVP rules.",
           "category": "admin",
           "priority": "required",
           "estimate": {
-            "min": 16,
-            "max": 24
+            "min": 18,
+            "max": 28
           }
         },
         {
@@ -511,17 +544,17 @@ export const demoConfig: CalculatorConfig = {
       "id": "m7",
       "title": "Milestone 7 — QA, staging, production deployment and handoff",
       "summary": "The MVP is tested end-to-end, deployed to staging/production and handed off with operational notes.",
-      "killerFeature": "A deployable 5v5 MVP ready for controlled beta launch.",
+      "killerFeature": "A deployable multi-format CS2 MVP ready for controlled beta launch.",
       "blocks": [
         {
           "id": "m7-qa-deployment-handoff",
-          "title": "QA, deployment and handoff",
-          "description": "Focused MVP QA, smoke/regression checks, production deployment and concise handoff notes.",
+          "title": "QA, deployment and handoff for supported formats",
+          "description": "Smoke/regression QA for 1v1, 2v2, 3v3 wingman and 5v5, staging/prod deploy, env documentation and handoff checklist.",
           "category": "qa",
           "priority": "required",
           "estimate": {
-            "min": 18,
-            "max": 24
+            "min": 22,
+            "max": 32
           }
         },
         {
@@ -552,18 +585,21 @@ export const demoConfig: CalculatorConfig = {
     }
   ],
   "assumptions": [
-    "Milestone 0 is a complimentary first stage and is included in hours/calendar but excluded from billable budget.",
-    "All estimates are calibrated for MVP delivery: one 5v5 flow, pragmatic integrations, admin/manual fallback for edge cases and no overbuilt automation.",
-    "Budget-fit MVP is 5v5 only; 2v2 downgrade, 3v3 and other formats are excluded.",
-    "At $27/h, the $15k cap gives about 555 billable hours; the current MVP estimate leaves budget buffer for integration uncertainty.",
+    "Milestone 0 is complimentary/free and does not count toward the paid budget.",
+    "Supported MVP formats are fixed: 1v1, 2v2, 3v3 on wingman maps and 5v5. 4v4 and arbitrary/custom player counts are excluded.",
+    "The architecture should support future games through a shared challenge engine and separate game adapters; CS2 is the first implemented adapter.",
+    "All estimates are calibrated for MVP delivery: pragmatic integrations, admin/manual fallback for edge cases and no overbuilt automation.",
+    "Hourly rate is $27/h. $15,000 budget equals roughly 555 billable hours before platform fees.",
     "Open challenges and basic Discord acquisition are included in MVP; slash-command creation and partner-server workflows remain removable.",
-    "MatchZy is treated as the primary CS2 match-management layer; if it does not expose enough data, the MVP falls back to logs/demo plus admin review.",
-    "Final estimate should be tightened after confirming payment provider, server hosting model and exact MatchZy event coverage."
+    "MatchZy is treated as the primary CS2 match-management tool; logs/demo/RCON/admin review are the fallback path if MatchZy does not cover every case.",
+    "Final estimate should shrink after confirming payment provider, CS2 server provider and MatchZy coverage per supported format."
   ],
   "nextQuestions": [
-    "Which stablecoin/payment provider should be used for deposit, balance and settlement?",
-    "Will CS2 servers be rented on demand, pre-provisioned, or managed by the client?",
-    "Which Discord server is the launch source of truth and who owns bot permissions?",
-    "Should MVP include withdrawals or only deposit/fund/play/payout ledger until beta validation?"
+    "Should 1v1 and 2v2 use wingman maps only, or can they also use selected standard maps?",
+    "Should 3v3 be strictly limited to wingman maps for MVP?",
+    "Which future game should the architecture anticipate first after CS2: Dota, Valorant or another title?",
+    "Which stablecoin/payment provider is preferred for deposits, locked funds, refunds and payouts?",
+    "Will CS2 servers be rented/pre-provisioned by the platform, provided by the client, or handled through a game-server provider?",
+    "Which Discord server is the launch source of truth and who owns bot permissions?"
   ]
 }
